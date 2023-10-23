@@ -71,21 +71,14 @@ int get_user_guess(void);
 
 void start_game(void)
 {
-
 	int i;
-
 	for (i = 4; i > -1; i--) {
-
-	printf("\rThe game start in %d seconds...", i);
-
-	fflush(stdout);
-
-	sleep(1);
-
+		printf("\rThe game start in %d seconds...", i);
+		fflush(stdout);
+		sleep(1);
 	}
-
+	
 	CLEAR_SCREEN;
-
 }
 
 
@@ -94,7 +87,7 @@ int guess(void)
 	int pc_guess, user_guess;
 	
 	srand(time(NULL)); 
-	pc_guess = rand() % 101; 
+	pc_guess = rand() % 100 + 1; 
 
 	start_game();
 	user_guess = get_user_guess();
