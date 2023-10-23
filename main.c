@@ -1,14 +1,7 @@
 /*
 
 * main.c
-
-*
-
 * Created on: Oct 21, 2023
-
-* Author: Emrah Akgül
-
-* E-mail: emrahakgul74@gmail.com
 
 *
 
@@ -52,7 +45,6 @@
 * STARTS THE GAME BY COUNTING BACKWARDS FROM FOUR 
 
 */
-
 void start_game(void);
 
 
@@ -63,7 +55,6 @@ void start_game(void);
 * RECEIVED FROM THE USER AND WRITES THE ANSWER TO THE SCREEN
 
 */
-
 int guess(void);
 
 
@@ -74,13 +65,11 @@ int guess(void);
 * IT RETURNS THE NUMBER GUESSED BY THE USER
 
 */
-
 int get_user_guess(void);
 
 
 
 void start_game(void)
-
 {
 
 	int i;
@@ -101,102 +90,59 @@ void start_game(void)
 
 
 int guess(void)
-
 {
-
-	int pc_guess, user_guess; 
-
+	int pc_guess, user_guess;
 	
-
 	srand(time(NULL)); 
-
 	pc_guess = rand() % 101; 
 
-
 	start_game();
-
 	user_guess = get_user_guess();
 
 	if (user_guess == -1) {
-
 		printf("Oyun sonlandı!\n");
-
 		return -1;
-
 	} else {
-
 		if (user_guess != pc_guess) {
-
 			CLEAR_SCREEN;
-
 			printf("Üzgünüm, yanlış tahmin! \n\nPc tahmini: \t%d\n"
-
 				"Tahmininiz: \t%d\n\n", pc_guess, user_guess);
-
 		} else {
-
 			printf("TEBRİKLER! \n\nPc tahmini: \t%d\n"
-
 				"Tahmininiz\t%d\n\n", pc_guess, user_guess);
-
 		}
-
 	}
 
-	
-
 	return 0;
-
 }
 
 
 /* ASK THE USER FOR A GUESS AND RETURN THE ANSWER */
-
 int get_user_guess(void)
-
 {
-
 	int guess;
-
+	
 	printf("Tahmininizi giriniz\n \r[0-100] [ÇIKIŞ İÇİN -1]: ");
-
 	scanf("%d", &guess);
-
+	
 	if (guess < -1 || guess > 100) {
-
 		CLEAR_SCREEN;
-
-	printf("Hatalı giriş yaptiniz.\n\n");
-
-	guess = get_user_guess();
-
+		printf("Hatalı giriş yaptiniz.\n\n");
+		guess = get_user_guess();
 	} else if (guess == -1) {
-
 		CLEAR_SCREEN;
-
 	}
 
-	
-
 	return guess;
-
 }
 
 
-
 /* MAIN FUNCTION */
-
 int main(void)
-
 {
-
 	int cntrl = 0;
-
 	while ((cntrl = guess()) != -1) {}
 
-	
-
-￼	return 0;
-
+	return 0;
 }
 
