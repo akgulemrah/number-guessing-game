@@ -23,7 +23,6 @@
 
 #define CLEAR_SCREEN() printf("\033[2J\033[1;1H")
 
-
 void start_game(void);
 int guess(void);
 int get_user_guess(void);
@@ -38,10 +37,9 @@ int main(void)
 	return 0;
 }
 
-
+/* STARTS THE GAME BY COUNTING BACKWARDS FROM FOUR */
 void start_game(void)
 {
-	/* STARTS THE GAME BY COUNTING BACKWARDS FROM FOUR */
 	int i;
 	for (i = 4; i > -1; i--) {
 		printf("\rThe game start in %d seconds...", i);
@@ -53,12 +51,12 @@ void start_game(void)
 }
 
 
+/*
+ * THIS FUNCTION GENERATES A NUMBER, COMPARE IT WITH THE NUMBER 
+ * RECEIVED FROM THE USER AND WRITES THE ANSWER TO THE SCREEN
+ */
 int guess(void)
 {
-	/*
- 	 * THIS FUNCTION GENERATES A NUMBER, COMPARE IT WITH THE NUMBER 
- 	 * RECEIVED FROM THE USER AND WRITES THE ANSWER TO THE SCREEN
- 	 */
 	int pc_guess, user_guess;
 	
 	srand(time(NULL)); 
@@ -70,27 +68,26 @@ int guess(void)
 	if (user_guess == -1) {
 		printf("Oyun sonlandı!\n");
 		return -1;
+	}
+	if (user_guess != pc_guess) {
+		CLEAR_SCREEN();
+		printf("Üzgünüm, yanlış tahmin! \n\nPc tahmini: \t%d\n"
+			"Tahmininiz: \t%d\n\n", pc_guess, user_guess);
 	} else {
-		if (user_guess != pc_guess) {
-			CLEAR_SCREEN();
-			printf("Üzgünüm, yanlış tahmin! \n\nPc tahmini: \t%d\n"
-				"Tahmininiz: \t%d\n\n", pc_guess, user_guess);
-		} else {
-			printf("TEBRİKLER! \n\nPc tahmini: \t%d\n"
-				"Tahmininiz\t%d\n\n", pc_guess, user_guess);
-		}
+		printf("TEBRİKLER! \n\nPc tahmini: \t%d\n"
+		"Tahmininiz\t%d\n\n", pc_guess, user_guess);
 	}
 
 	return 0;
 }
 
 
+/* 
+ * IT ASKS THE USER TO GUESS A NUMBER BETWEEN 0 AND 101 AND ENTER IT.
+ * IT RETURNS THE NUMBER GUESSED BY THE USER
+ */
 int get_user_guess(void)
 {
-	/* 
-	 * IT ASKS THE USER TO GUESS A NUMBER BETWEEN 0 AND 101 AND ENTER IT.
-	 * IT RETURNS THE NUMBER GUESSED BY THE USER
-	 */
 	int guess;
 	
 	printf("Tahmininizi giriniz\n \r[0-100] [ÇIKIŞ İÇİN -1]: ");
